@@ -7,18 +7,25 @@
 //
 
 import UIKit
+import MapKit
+
+
 
 class ViewController: UIViewController {
 
+    // MARK: - Properties
+    private var demoCoordinate : CGPoint = CGPoint(x: -25.4277800, y: -49.2730600)
+    
+    
+    // MARK: - Outlets
+    @IBOutlet weak var mapView: MKMapView!
+    
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
 
 }

@@ -14,7 +14,9 @@ import CoreLocation
 class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
 
     // MARK: - Properties
-    private var demoCoordinate : CGPoint = CGPoint(x: -25.4277800, y: -49.2730600)
+    private var mapAnnotations = [MapAnnotation]()
+    private var coordinates = [CGPoint]()
+    private var demoCoordinate : CGPoint = CGPoint(x: -25.420, y: -49.270)
     private var locationManager : CLLocationManager!
     private var userLocation : CLLocation?
     private var initialLocation = CLLocation(latitude: 0.0, longitude: 0.0)
@@ -27,6 +29,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // load coordinates
+        loadCoordinates()
+        
         // get user location
         getUserLocation()
         
@@ -36,6 +41,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         
     }
 
+    // MARK: - Application Data Source
+    private func loadCoordinates() {
+        var place : CGFloat = -49.270
+        for i in 1...9 {
+            let coordinate = CGPoint(x: -25.420, y: place)
+            place = place + (CGFloat(i) / 1000)
+            coordinates.append(coordinate)
+        }
+    }
+
+    
+    
     // MARK: - MapView SetUp
     private func mapViewSetup() {
         initialLocation = CLLocation(latitude: CLLocationDegrees(demoCoordinate.x), longitude: CLLocationDegrees(demoCoordinate.y))
@@ -52,11 +69,22 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     }
     
     private func plotCoordinateOnMap(){
-        let mapAnnotation = MapAnnotation(title: "Title",
-                                          locationName: "Location Name",
-                                          discipline: "Discipline",
-                                          coordinate: CLLocationCoordinate2D(latitude: CLLocationDegrees(demoCoordinate.x), longitude: CLLocationDegrees(demoCoordinate.y)))
-        mapView.addAnnotation(mapAnnotation)
+        
+        for coordinate in coordinates {
+            
+            let mapAnnotation = MapAnnotation(title: "(\(coordinate.y))",
+                                              locationName: "Location Name",
+                                              discipline: "Discipline",
+                                              coordinate: CLLocationCoordinate2D(latitude: CLLocationDegrees(coordinate.x), longitude: CLLocationDegrees(coordinate.y)))
+            
+            mapAnnotations.append(mapAnnotation)
+            
+            
+        }
+        
+        // Plot all annotations
+        mapView.addAnnotations(mapAnnotations)
+
         
     }
 
@@ -74,6 +102,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         annotationView.transform = transform
         return annotationView
     }
+    
+    func mapView(_ mapView: MKMapView, clusterAnnotationForMemberAnnotations memberAnnotations: [MKAnnotation]) -> MKClusterAnnotation {
+        let cluster = MKClusterAnnotation(memberAnnotations: memberAnnotations)
+        cluster.title = "Cluster"
+        cluster.subtitle = nil
+        return cluster
+    }
+    
+    
     
     //MARK: - Map Helper
     func getUserLocation() {

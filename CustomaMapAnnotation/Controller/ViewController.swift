@@ -107,11 +107,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             return annotationView
         }else if annotation is MKClusterAnnotation {
             let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "CustomCluster")
-            annotationView.image = UIImage(named: "apple")
+            annotationView.image = UIImage(named: "blue")
             annotationView.layer.cornerRadius = 60
             annotationView.layer.masksToBounds = true
-            annotationView.layer.borderColor = UIColor.red.cgColor
-            annotationView.layer.borderWidth = 12
+//            annotationView.layer.borderColor = UIColor.red.cgColor
+//            annotationView.layer.borderWidth = 12
             annotationView.alpha = 1
             let transform = CGAffineTransform(scaleX: 0.55, y: 0.55)
             annotationView.transform = transform

@@ -82,6 +82,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             
         }
         
+//        mapView.register(self, forAnnotationViewWithReuseIdentifier: "identifier")
         // Plot all annotations
         mapView.addAnnotations(mapAnnotations)
 
@@ -91,22 +92,42 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
     // MARK: - Map Vew Delegate
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "CustomPin")
-        annotationView.image = UIImage(named: "placeImage")
-        annotationView.layer.cornerRadius = 60
-        annotationView.layer.masksToBounds = true
-        annotationView.layer.borderColor = UIColor.white.cgColor
-        annotationView.layer.borderWidth = 12
-        annotationView.alpha = 1
-        let transform = CGAffineTransform(scaleX: 0.55, y: 0.55)
-        annotationView.transform = transform
-        return annotationView
+        
+        if annotation is MapAnnotation {
+            let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "CustomPin")
+            annotationView.image = UIImage(named: "placeImage")
+            annotationView.layer.cornerRadius = 60
+            annotationView.layer.masksToBounds = true
+            annotationView.layer.borderColor = UIColor.white.cgColor
+            annotationView.layer.borderWidth = 12
+            annotationView.alpha = 1
+            let transform = CGAffineTransform(scaleX: 0.55, y: 0.55)
+            annotationView.transform = transform
+            annotationView.clusteringIdentifier = "identifier"
+            return annotationView
+        }else if annotation is MKClusterAnnotation {
+            let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "CustomCluster")
+            annotationView.image = UIImage(named: "apple")
+            annotationView.layer.cornerRadius = 60
+            annotationView.layer.masksToBounds = true
+            annotationView.layer.borderColor = UIColor.red.cgColor
+            annotationView.layer.borderWidth = 12
+            annotationView.alpha = 1
+            let transform = CGAffineTransform(scaleX: 0.55, y: 0.55)
+            annotationView.transform = transform
+            annotationView.clusteringIdentifier = "identifier"
+            return annotationView
+        }
+        return MKAnnotationView()
+        
     }
     
+    
     func mapView(_ mapView: MKMapView, clusterAnnotationForMemberAnnotations memberAnnotations: [MKAnnotation]) -> MKClusterAnnotation {
+        print("DEBUG - ### CLUSTER ####### - clusterAnnotationForMemberAnnotations count:\(memberAnnotations.count)")
         let cluster = MKClusterAnnotation(memberAnnotations: memberAnnotations)
         cluster.title = "Cluster"
-        cluster.subtitle = nil
+        cluster.subtitle = "8"
         return cluster
     }
     

@@ -13,6 +13,7 @@
 		9C33537D20B094CA005F622F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C33537C20B094CA005F622F /* Assets.xcassets */; };
 		9C33538020B094CA005F622F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C33537E20B094CA005F622F /* LaunchScreen.storyboard */; };
 		9C33538C20B096D7005F622F /* MapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C33538B20B096D7005F622F /* MapAnnotation.swift */; };
+		9C760F0620B145D8001549C0 /* MarkerAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C760F0520B145D8001549C0 /* MarkerAnnotationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		9C33537F20B094CA005F622F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9C33538120B094CA005F622F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9C33538B20B096D7005F622F /* MapAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAnnotation.swift; sourceTree = "<group>"; };
+		9C760F0520B145D8001549C0 /* MarkerAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerAnnotationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 			isa = PBXGroup;
 			children = (
 				9C33538B20B096D7005F622F /* MapAnnotation.swift */,
+				9C760F0520B145D8001549C0 /* MarkerAnnotationView.swift */,
 			);
 			path = "MapKit Helper";
 			sourceTree = "<group>";
@@ -171,6 +174,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C33537820B094B9005F622F /* ViewController.swift in Sources */,
+				9C760F0620B145D8001549C0 /* MarkerAnnotationView.swift in Sources */,
 				9C33537620B094B9005F622F /* AppDelegate.swift in Sources */,
 				9C33538C20B096D7005F622F /* MapAnnotation.swift in Sources */,
 			);

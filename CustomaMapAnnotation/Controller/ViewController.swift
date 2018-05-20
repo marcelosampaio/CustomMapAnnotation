@@ -74,7 +74,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             
             let mapAnnotation = MapAnnotation(title: "(\(coordinate.y))",
                                               locationName: "Location Name",
-                                              discipline: "Discipline",
+                                              color: UIColor.yellow,
                                               coordinate: CLLocationCoordinate2D(latitude: CLLocationDegrees(coordinate.x), longitude: CLLocationDegrees(coordinate.y)))
             
             mapAnnotations.append(mapAnnotation)
@@ -82,7 +82,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             
         }
         
-//        mapView.register(self, forAnnotationViewWithReuseIdentifier: "identifier")
+        mapView.register(MarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
         // Plot all annotations
         mapView.addAnnotations(mapAnnotations)
 
@@ -126,8 +126,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     func mapView(_ mapView: MKMapView, clusterAnnotationForMemberAnnotations memberAnnotations: [MKAnnotation]) -> MKClusterAnnotation {
         print("DEBUG - ### CLUSTER ####### - clusterAnnotationForMemberAnnotations count:\(memberAnnotations.count)")
         let cluster = MKClusterAnnotation(memberAnnotations: memberAnnotations)
-        cluster.title = "Cluster"
-        cluster.subtitle = "8"
+        cluster.title = "8"
+        cluster.subtitle = "subtitle"
         return cluster
     }
     
